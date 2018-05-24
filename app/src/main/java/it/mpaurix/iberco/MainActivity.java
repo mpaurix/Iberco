@@ -92,12 +92,14 @@ public class MainActivity extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
     private void calculateTime(int items, double coeff){
+        TextView results = (TextView) findViewById(R.id.results);
         try{
             if(coeff!= 0 && items != 0) {
                 int hours = new Double(Math.floor(items * coeff)).intValue();
                 int minutes = new Double(Math.floor((items * coeff - Math.floor(items * coeff)) * 60)).intValue();
-                TextView results = (TextView) findViewById(R.id.results);
                 results.setText(hours + " ore " + minutes + " minuti");
+            }else{
+                results.setText(null);
             }
         }
         catch(Exception e){
